@@ -60,14 +60,8 @@
     align-items: center;
 }
 
-.social,
-.logo,
-.subscribe{
-    border: 1px solid #5995DA
-}
-
-.social,
-.subscribe{
+.github,
+.project{
     align-self: flex-end;
     margin-bottom: 20px;
 }
@@ -95,6 +89,17 @@
     height: 300px;
 }
 
+.first-item{
+    order: 1;
+}
+
+.last-item{
+    order: -1;
+}
+
+.fourth-item{
+    order: -1;
+}
 
 /* Footer Set */
 .footer{
