@@ -4,6 +4,14 @@
     box-sizing: border-box;
 }
 
+/* Mobile Styles*/
+@media only screen and (max-width: 400px){
+    body{
+        background-color: #f09a9d
+    }
+}
+
+/* Desktop Styles*/
 /* Name Title */
 .name-container{
     background-color:  rgba(0,139, 139,0.8);
