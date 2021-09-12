@@ -134,7 +134,8 @@
 /* Mobile Styles*/
 @media only screen and (max-width: 400px){
     .page{
-        display: flex;
+        width: 400px;
+        height: 900px;
         flex-wrap: wrap;
     }
 
