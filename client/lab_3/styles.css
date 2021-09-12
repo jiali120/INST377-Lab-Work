@@ -4,13 +4,6 @@
     box-sizing: border-box;
 }
 
-/* Mobile Styles*/
-@media only screen and (max-width: 400px){
-    body{
-        background-color: #f09a9d
-    }
-}
-
 /* Desktop Styles*/
 /* Name Title */
 .name-container{
@@ -135,4 +128,13 @@
     width: 300px;
     font-family: ‘Segoe UI’, Candara, ‘Bitstream Vera Sans’, ‘DejaVu Sans’, 
     ‘Bitsream Vera Sans’, ‘Trebuchet MS’, Verdana, ‘Verdana Ref’, sans-serif;
+}
+
+
+/* Mobile Styles*/
+@media only screen and (max-width: 400px){
+    .page{
+        width: 400px;
+        margin: 0 auto;
+    }
 }
