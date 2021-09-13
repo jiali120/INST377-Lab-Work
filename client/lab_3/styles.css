@@ -4,7 +4,6 @@
     box-sizing: border-box;
 }
 
-/* Desktop Styles*/
 /* Name Title */
 .name-container{
     background-color:  rgba(0,139, 139,0.8);
@@ -31,7 +30,7 @@
     border: 1px solid #fff;
     width: 900px;
     display: flex;
-    justify-content: space-around;
+    justify-content: space-between;
 }
 
 .links{
@@ -40,10 +39,9 @@
     justify-content: flex-end;
 }
 
-.login{
+.mainpage{
     margin-left: 20px;
 }
-
 
 /* Header Styles */
 .header-container{
