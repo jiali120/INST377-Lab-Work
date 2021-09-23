@@ -126,7 +126,7 @@ a {
 }
 
 a:hover {
-  background-color:rgba(0,139, 139, 1);
+  background-color: lightskyblue;
   display: inline-block;
   border-radius: 2px;
 }
