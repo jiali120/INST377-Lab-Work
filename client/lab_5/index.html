@@ -8,54 +8,58 @@
     </head>
 
     <body>
-
-        <!-- <div class='wrapper'> -->
-            <!-- <div class="container"> -->
-                <header class="speaker-form-header">
-                    <h1>Jia Li's Lab 5</h1>
+        
+        <div class='wrapper'>
+            <div class="container">
+                <header class="box has-background-danger-light">
+                    <div class="content is-small">
+                        <h1 class="text has-text-grey">Jia Li's Lab 5</h1>
+                    </div>
                 </header>
 
                 <section id="eyes" class="section">
                     <div class="columns is-vcentered">
                         
-                        <div class="column is-primary">
+                        <div class="column is-primary">   
                             <form action="/api" method="get" class="box">
-                                <div class="form-row">
-                                    <label for="full-name">First Name</label>
-                                    <input id="full-name" name="full-name" type="text"/>           
+                                <div class="field">
+                                    <label class="text has-text-grey">First Name</label>
+                                    <input class="input is-normal" type="text">          
+                                </div>
+                           
+                                <div class="field">
+                                    <label class="text has-text-grey">Food Preference</label>
+                                    <input class="input is-normal" type="text">     
+                                </div>
+                                <div class="field">
+                                    <legend class="text has-text-grey">Veggie or Vegan?</legend>
+                                    <div class="control">
+                                        <label class="radio text has-text-grey">
+                                            <input type="radio" name="answer">
+                                            Yes
+                                        </label>
+                                        <label class="radio text has-text-grey">
+                                            <input type="radio" name="answer">
+                                            No
+                                        </label>
+                                    </div>
                                 </div>
                                 
-                                <div class="form-row">
-                                    <label for="food-pref">Food Preference</label>
-                                    <input id="food-pref" name="food-pref" type="food-pref"/>       
-                                </div>
-                            
-                                <fieldset class="legacy-form-row">
-                                    <legend>Veggie or Vegan?</legend>
-                                    <input id="talk-type-1" name="talk-type" type="radio" value="veg-yes" />
-                                    <label for="talk-type-1" class="radio-label">Yes</label>
-                    
-                                    <input id="talk-type-2" name="talk-type" type="radio" value="veg-no" checked />
-                                    <label for="talk-type-2" class="radio-label">No</label>
-                                </fieldset>
-                                
-                                <div class="form-row">
-                                    <button>Submit</button>
-                                </div>        
+                                <button class="button is-primary">Submit</button>
                             </form>
                         </div>
                         
                         <div class="column"> 
                             <div class="box">
-                                <p class="bd-notification is-primary">This is going to be something in two weeks.</p>
+                                <p class="bd-notification is-primary  text has-text-grey">This is going to be something in two weeks.</p>
                             </div>
                         </div>
 
                     </div>
                 </section>
 
-            <!-- </div> -->
-        <!-- </div>  -->
+            </div>
+        </div>
         
     </body>
 </html>
