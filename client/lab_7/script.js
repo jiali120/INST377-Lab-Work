@@ -65,7 +65,7 @@ async function windowActions() {
   }
 
   function mapInit() {
-    mymap = L.map('mapid').setView([39.00, -76.93], 13);
+    mymap = L.map('mapid').setView([39.00, -76.95], 13);
     L.tileLayer(
       'https://api.maptiler.com/maps/topo/{z}/{x}/{y}.png?key=0im19NFqvOVkTZzwiWhj',
       {
