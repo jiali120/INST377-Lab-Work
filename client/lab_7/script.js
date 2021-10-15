@@ -9,7 +9,17 @@ async function windowActions() {
   const colE = [];
   mymap = null;
   let pinMap = [];
-  //const totalCount = document.querySelector('.countTotle');
+
+  async function searchPin(url) {
+    try {
+      const ur = await fetch(url);
+      const arr = await ur.json();
+      return arr;
+    } catch (err) {
+      console.error(err);
+      return err;
+    }
+  }
 
   fetch(endpoint);
 
@@ -37,7 +47,6 @@ async function windowActions() {
       .join('');
 
     suggestions.innerHTML = html;
-    // totalCount.innerHTML = matchArray.length;
 
     function getPoint(matchElement) {
       if (
@@ -56,7 +65,7 @@ async function windowActions() {
   }
 
   function mapInit() {
-    mymap = L.map('mapid').setView([38.974, -76.86609], 13);
+    mymap = L.map('mapid').setView([39.00, -76.93], 13);
     L.tileLayer(
       'https://api.maptiler.com/maps/topo/{z}/{x}/{y}.png?key=0im19NFqvOVkTZzwiWhj',
       {
