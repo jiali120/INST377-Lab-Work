@@ -3,60 +3,101 @@ const suggestions = document.querySelector('.suggestions');
 
 async function windowActions() {
   const endpoint = 'https://data.princegeorgescountymd.gov/resource/umjn-t2iz.json';
-
   const request = await fetch(endpoint);
-  // .then((blob) => blob.json())
-  // .then((data) => arrayName.push(...data));
-
   const arrayName = await request.json();
   console.log(arrayName);
+  const colE = [];
+  mymap = null;
+  let pinMap = [];
+  //const totalCount = document.querySelector('.countTotle');
 
-  function findMatches(wordToMatch, arrayName) {
-    if (wordToMatch.length != 0) {
+  fetch(endpoint);
+
+  function findMatches(wordToMatch, array) {
+    if (wordToMatch.length !== 0) {
+      document.querySelector('.suggestions').innerHTML = '';
+
       return arrayName.filter((place) => {
-        // here we need to figure out if the city or state matches what was searched
         const regex = new RegExp(wordToMatch, 'gi');
-        return place.name.match(regex) || place.category.match(regex) || place.zip.match(regex);
+        return (
+          place.zip.match(regex)
+        );
       });
-    }
-    suggestions.innerHTML = '';
+    }suggestions.innerHTML = '';
   }
-
-  /* function numberWithCommas(x) {
-    return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
-  } */
 
   function displayMatches(event) {
-    const matchArray = findMatches(event.target.value, arrayName);
-    console.log(matchArray);
-    if (matchArray) {
-      const html = matchArray.map((place) => {
-        const regex = new RegExp(event.target.value, 'gi');
-        const restaurantName = place.name;
-        // replace(regex, `<span class='h1'>${event.target.value}</span>`);
-        const foodCategory = place.category;
-        // .replace(regex, `<span class='h1'>${event.target.value}</span>`);
-        const zipCode = place.zip;
+    const endMatch = findMatches(event.target.value, arrayName).slice(0, 5);
+    matchArray = endMatch;
+    console.log('slice', matchArray);
+    const html = matchArray.map((place) => `
+        <li style ="width:100%">${place.name}
+        <br>${place.address_line_1}
+        <br>${place.zip}<br></li>`)
+      .join('');
 
-        return `
-        
-            <li><p class='name'>${restaurantName}<br/>
-                <class='category'>${foodCategory}<br/>
-                <class='address_line_1'>${place.address_line_1}<br/>
-                <class='city'>${place.city}<br/>
-                <class='zip'>${zipCode}</p>         
-            </li>
-            `;
-      }).join('');
-      suggestions.innerHTML = html;
+    suggestions.innerHTML = html;
+    // totalCount.innerHTML = matchArray.length;
+
+    function getPoint(matchElement) {
+      if (
+        matchElement !== null
+        && matchElement.geocoded_column_1 !== null
+        && matchElement.geocoded_column_1.coordinates !== null
+      ) {
+        return [
+          matchElement.geocoded_column_1.coordinates[1],
+          matchElement.geocoded_column_1.coordinates[0]
+        ];
+      }
+      return null;
     }
+    pinMap = matchArray.map((item) => getPoint(item));
   }
 
-  searchInput.addEventListener('change', displayMatches);
-  searchInput.addEventListener('keyup', (evt) => { displayMatches(evt); });
+  function mapInit() {
+    mymap = L.map('mapid').setView([38.974, -76.86609], 13);
+    L.tileLayer(
+      'https://api.maptiler.com/maps/topo/{z}/{x}/{y}.png?key=0im19NFqvOVkTZzwiWhj',
+      {
+        attribution:
+          '<a href="https://www.maptiler.com/copyright/" target="_blank">&copy; MapTiler</a> <a href="https://www.openstreetmap.org/copyright" target="_blank">&copy; OpenStreetMap contributors</a>',
+        maxZoom: 18,
+        id: 'mapbox/streets-v11',
+        tileSize: 512,
+        zoomOffset: -1,
+        accessToken: 'pk.eyJ1IjoiamxpNzkiLCJhIjoiY2t1bXZsdHkyMDF6azJ1cGY4czB3N2RoNCJ9.TJk9AkHOXrQSxJ702X16UQ'
+      }
+    ).addTo(mymap);
+  }
+
+  function pinCount() {
+    let i = 0;
+    pinMap.forEach((zipElement) => {
+      if (i == 0) {
+        mymap.panTo(zipElement);
+        i = 2;
+      }
+      if (zipElement !== null) {
+        if (!colE.includes(zipElement)) {
+          colE.push(zipElement);
+          L.marker(zipElement).addTo(mymap);
+        }
+      } 
+    });
+    console.log(colE);
+  }
+
+  buttonClick = document.querySelector('.style');
+  buttonClick.addEventListener('click', pinCount);
+  searchInput.addEventListener('input', (evt) => {
+    if (searchInput.value === '' || searchInput.value === null) {
+      suggestions.innerHTML = '';
+    } else {
+      displayMatches(evt);
+    }
+  });
+  mapInit();
 }
 
 window.onload = windowActions;
-
-
-

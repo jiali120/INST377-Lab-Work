@@ -1,71 +1,45 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang='en'>
     <head>
         <meta charset="UTF-8"/>
-        <title>Jia Li Lab 6: Typeahead Entries</title>
+        <title>Jia Li Lab 7: JSON to Map Markers</title>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css">
+        <link rel='stylesheet' href='styles.css' />
         <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
               integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
               crossorigin=""/>
         <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
                 integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
                 crossorigin="">
-        </script>
-        <style>
-            #mapid{
-                height: 180px;
-            }
-        </style>
-       
+        </script>     
     </head>
 
     <body>
-        <h1>Jia Li Lab 7</h1>
-
+        <div class="wrapper">
+            <div class="columns">
+                <div class="container">
+                
+                    <div class="column is-two-thirds">
+                        <div class="title">Jia Li's Lab 7</div>
+                        <h1 class="is-size-6 mb-5">Zip Code Food Search</h1>
         
+                        <div class="field">        
+                                <div class="boxstyle">
+                                    <input type="text" class="input search">
+                                    <button class="style">Search</button>
+                                </div>   
+                        </div>
+                    </div>
+                    <ul class="suggestions"></ul>      
+                </div>
+                    
+                    <div class="column">
+                        <div class="box" id="mapid"></div>
+                    </div> 
+            </div>
+            <!-- <span class="totalCount"></span> -->
+        </div>
 
-        <form>
-           <!-- <input type='text' class='search' placeholder='Restaurant or Food Type'> -->
-           <input type='text' class='search'> 
-        </form>
-           <ul class='suggestions'>    
-           </ul>
-    
-       
-        <div id='mapid'></div>
-        <script src='script.js'>
-
-            const mymap = L.map('mapid').setView([51.505, -0.09], 13);  
-             
-
-            L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}', {
-                attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
-                maxZoom: 18,
-                id: 'mapbox/streets-v11',
-                tileSize: 512,
-                zoomOffset: -1,
-                accessToken: 'your.mapbox.access.token'
-            }).addTo(mymap);
-
-            const marker = L.marker([51.5, -0.09]).addTo(mymap);
-
-            const circle = L.circle([51.508, -0.11], {
-                color: 'red',
-                fillColor: '#f03',
-                fillOpacity: 0.5,
-                radius: 500
-            }).addTo(mymap);
-
-            const polygon = L.polygon([
-                [51.509, -0.08],
-                [51.503, -0.06],
-                [51.51, -0.047]
-            ]).addTo(mymap);
-
-
-        </script>
-
-
-
-    </body>
+        <script src="script.js"></script>
+    </body>    
 </html>
-

@@ -1,0 +1,61 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+#mapid{
+    width: 500px;
+    height: 500px;
+    top: 30px;
+    left: 30px;
+    display: flex;
+}
+
+.wrapper {
+    display: flex;
+}
+  
+.boxstyle{
+    display:flex;
+}
+
+.container {
+    margin-left: 100px;
+    margin-top: 20px;
+    max-width: 960px;
+}
+  
+.style {
+    display: flex; 
+    position: relative;
+    justify-content: center;
+    padding: 10px;
+    border-radius: 5px;
+    background: pink;
+    color: black;
+}
+ 
+li {
+    text-align: center;
+    background: pink;
+    color: black;
+    margin: 10px;
+    border-radius: 5px;
+}
+
+.columns {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+@media only screen and (max-width: 768px) {
+    body {
+      background-color: white;
+    }
+    .container{
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+    }
+}
