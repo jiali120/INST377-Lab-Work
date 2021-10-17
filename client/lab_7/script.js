@@ -38,9 +38,8 @@ async function windowActions() {
 
   function displayMatches(event) {
     const endMatch = findMatches(event.target.value, arrayName).slice(0, 5);
-    matchArray = endMatch;
-    console.log('slice', matchArray);
-    const html = matchArray.map((place) => `
+    console.log('slice', endMatch);
+    const html = endMatch.map((place) => `
         <li style ="width:100%">${place.name}
         <br>${place.address_line_1}
         <br>${place.zip}<br></li>`)
@@ -61,7 +60,7 @@ async function windowActions() {
       }
       return null;
     }
-    pinMap = matchArray.map((item) => getPoint(item));
+    pinMap = endMatch.map((item) => getPoint(item));
   }
 
   function mapInit() {
@@ -81,18 +80,17 @@ async function windowActions() {
   }
 
   function pinCount() {
-    let i = 0;
+    const i = 0;
     pinMap.forEach((zipElement) => {
       if (i == 0) {
         mymap.panTo(zipElement);
-        i = 2;
       }
       if (zipElement !== null) {
-        if (!colE.includes(zipElement)) {
+        if (colE !== zipElement) {
           colE.push(zipElement);
           L.marker(zipElement).addTo(mymap);
         }
-      } 
+      }
     });
     console.log(colE);
   }
@@ -107,6 +105,7 @@ async function windowActions() {
     }
   });
   mapInit();
+  searchPin();
 }
 
 window.onload = windowActions;
